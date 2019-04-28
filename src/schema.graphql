@@ -1,0 +1,43 @@
+scalar DateTime
+
+enum LinkOrderByInput {
+  description_ASC
+  description_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type Query {
+  info: String!
+  loginCheck: User!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+}
+
+type Subscription {
+  commentAdded(repoFullName: String!): Comment
+  newComment: Comment
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type Comment {
+  id: ID!
+  number : String
+  content: String
+}
+
